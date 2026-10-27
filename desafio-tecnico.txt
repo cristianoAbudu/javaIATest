@@ -1,0 +1,175 @@
+Desafio Técnico
+
+1. CONTEXTUALIZAÇÃO
+
+Desafio técnico que atenda aos seguintes critérios:
+Critérios principais:
+
+- Experiência multi-stack em back-end e front-end (ex.: Node/TypeScript, Java, .NET);
+
+- Experiência com desenvolvimento de API REST e arquitetura de microsserviços;
+
+- Experiência com bancos de dados relacionais (SQL) e não relacionais (NoSQL);
+
+- Conhecimento de Clean Code, testes automatizados e cultura de code review;
+
+- Experiência com Git, GitFlow e esteiras de CI/CD em cloud (AWS, Azure ou GCP);
+
+- Experiência liderando e mentorando squads técnicas;
+
+- Capacidade de definir padrões técnicos e conduzir governança entre squads;
+
+- Experiência em precificação e dimensionamento técnico de propostas comerciais;
+
+- Conhecimento em IA aplicada ao desenvolvimento (copilotos de código, agentes e/ou CLIs de Al
+Coding);
+
+Diferenciais:
+
+- Experiência com GitHub Copilot ou ferramentas equivalentes de AI Coding;
+
+- Experiência com GitHub Actions ou Azure DevOps para integração e deploy contínuos;
+
+- Experiência articulando decisões técnicas com stakeholders de negócio e Client Face;
+
+- Experiência elaborando documentação de arquitetura e governança (ADRs, guias de code review);
+- Vivência em programas formais de mentoria técnica;
+
+- Uso do SAI APP 3.0 na resolução do desafio;
+
+É proposta a concepção de um projeto que aborde várias das habilidades e conhecimentos desejados. O
+
+desafio pode ser dividido em duas partes principais: o desenvolvimento de uma API RESTful de pedidos com
+
+persistência em banco relacional, e o desenvolvimento de um serviço de catálogo com persistência em
+banco não relacional consumido pelo primeiro — além de uma parte de diferenciais voltada a artefatos de
+liderança técnica (governança e dimensionamento de proposta), e o mais relevante nesse contexto da
+posição, através do uso eficaz de IA no ciclo de desenvolvimento e do julgamento técnico-executivo
+demonstrado nos artefatos de liderança.
+
+Diferencial avaliado: o uso do SAI APP 3.0 ao longo da resolução deste desafio é considerado um diferencial
+técnico observado pelo painel avaliador.
+Adendo — uso de IA obrigatório: o uso de ferramentas de IA durante a resolução deste desafio é
+obrigatório, não opcional. Ao final, o candidato deve enviar, junto com a entrega, o link do chat/conversa
+com a IA utilizado durante a resolução (ex.: link de compartilhamento do SAI APP 3.0, GitHub Copilot Chat,
+ChatGPT, Claude, entre outros).
+
+2. DESCRIÇÃO DO DESAFIO
+
+2.1. Objetivo geral
+
+Desenvolver, com o uso de ferramentas de IA, um sistema composto por dois serviços: um serviço de
+Pedidos, que permita criar e consultar pedidos, e um serviço de Catálogo, que forneça os produtos e preços
+consumidos pelo serviço de Pedidos na criação de cada pedido. Complementarmente, produzir dois
+artefatos de liderança técnica: um guia de padrão de code review para squads multi-stack, e um
+dimensionamento técnico de esforço para uma proposta comercial hipotética.
+
+Adotamos a metodologia de Spec-Driven Development (SDD) em AI Development no nosso dia a dia e
+gostariamos de vê-la sendo aplicada no desafio, como um diferencial em sua execução.
+
+2.2. Parte 1: API RESTful de Pedidos com banco relacional
+
+2.2.1. Requisitos
+
+2.2.1.1, Configuração do ambiente
+
+* Utilizar a stack de sua preferência (ex.: Node.js com TypeScript, Java ou .NET), desde que justificada a
+escolha;
+
+* Aplicar os princípios de Clean Code e Clean Architecture na estrutura do projeto;
+
+* Utilizar um banco de dados relacional (PostgreSQL, MySQL ou SQL Server) para persistência dos pedidos.
+
+2.2.1.2. Desenvolvimento de funcionalidades
+* Implementar os endpoints para criar, listar e consultar pedidos;
+* Cada pedido deve conter cliente, itens, quantidades, subtotal, desconto aplicado, total e status;
+* Implementar uma regra de desconto configurável (não fixa em código) sobre o valor total do pedido;
+
+* Persistir os pedidos utilizando consultas parametrizadas, sem concatenação de strings, e cobrir a criação
+de pedido com testes automatizados.
+2.2.1.3. Versionamento de código
+
+* Utilizar Git para o controle de versão, adotando a estratégia de GitFlow, com histórico de commits
+organizado.
+2.3. Parte 2: Serviço de Catálogo com banco não relacional
+
+2.3.1. Requisitos
+
+2.3.1.1. Configuração do ambiente
+
+* Utilizar a stack de sua preferência (ex.: Java, Node,js ou Python), com um banco de dados não relacional
+(MongoDB ou equivalente) para persistência do catálogo.
+
+2.3.1.2. Desenvolvimento de funcionalidades
+* Implementar um endpoint para consulta de produtos com preço vigente;
+* Expor uma API REST a ser consumida pelo serviço de Pedidos (Parte 1) para validar item e preço no
+momento da criação do pedido;
+* Garantir que a consulta de preços não utilize padrões de consulta ineficientes (ex.: uma consulta ao
+banco por item dentro de um laço).
+2.4. Parte diferenciais
+
+Etapa opcional, que tem como foco os critérios diferenciais da vaga.
+
+2.4.1. Integração com serviços de IA
+
+* Utilizar um serviço de IA para sugerir e revisar as validações e mensagens de erro das APIs,
+documentando o prompt utilizado e a validação aplicada sobre a saída.
+
+2.4.2. DevOps e Cloud
+
+* Configurar uma esteira de CI/CD (GitHub Actions ou Azure DevOps) que execute os testes automatizados
+como gate obrigatório antes de qualquer deploy.
+
+2.4.3. Padrão de governança técnica
+
+* Redigir um guia curto (1 a 2 paginas) de code review e clean code aplicável a squads multi-stack,
+incluindo critérios que devem bloquear a aprovação de um pull request.
+
+2.4.4. Dimensionamento de proposta
+
+* Elaborar um dimensionamento técnico (esforço, senioridade, composição de time e premissas) para
+entregar as Partes 1 e 2 em um cenário hipotético de três semanas, com uma equipe reduzida a um
+desenvolvedor sênior e um pleno.
+3. CRITÉRIOS DE AVALIAÇÃO
+
+- Qualidade do código: clareza, uso de boas práticas de programação, aplicação de Clean Code e Clean
+Architecture, ausência de vulnerabilidades óbvias (ex.: SQL injection por concatenação de string);
+
+- Funcionalidade: os dois serviços devem funcionar conforme o esperado, sem bugs críticos, com a
+integração entre Pedidos e Catálogo funcional;
+
+- Documentação: clareza na documentação do projeto, incluindo setup, configuração, uso da aplicação e
+sobre a utilização de prompts de IA;
+
+- Uso eficaz de Git e GitHub: histórico de commits bem organizado, uso adequado de branches e pull
+requests seguindo o GitFlow;
+
+- Implementação dos diferenciais: qualidade e relevância do guia de governança e do dimensionamento de
+proposta, além da criatividade nas demais funcionalidades diferenciais;
+
+- Uso eficaz de IA no ciclo de desenvolvimento: aplicação da IA ao longo de todo o ciclo (especificação,
+codificação, testes e depuração), com prompts e decisões documentados, uso responsável e validação das
+saídas com evidências;
+
+- Liderança técnica evidenciada: qualidade do julgamento demonstrado no guia de governança e no
+dimensionamento de proposta — clareza, realismo das premissas e capacidade de comunicação para
+públicos não técnicos.
+
+4. ENTREGA DO DESAFIO
+
+Candidato deve disponibilizar:
+
+- O código-fonte de ambos os serviços em um repositório no GitHub, incluindo instruções detalhadas no
+README sobre como configurar e executar o projeto;
+
+- Documento explicativo de qual ferramenta de AI Development utilizou, qual o motivo da escolha e o
+processo de utilização ao longo de todo o ciclo, de forma a evidenciar o uso nas etapas;
+
+- O guia de code review/governança e o dimensionamento de proposta da Parte diferenciais, como
+documentos anexos ao repositório (ex.: pasta /docs );
+
+- O link do chat/conversa com a ferramenta de IA utilizada durante a resolução do desafio (obrigatório —
+ver adendo na seção 1);
+
+- É desejável fornecer uma breve apresentação em video ou slides, destacando os principais aspectos do
+projeto e qualquer diferencial implementado.
