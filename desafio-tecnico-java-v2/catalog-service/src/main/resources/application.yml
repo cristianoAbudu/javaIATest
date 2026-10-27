@@ -1,0 +1,22 @@
+server:
+  port: ${SERVER_PORT:8082}
+spring:
+  application:
+    name: catalog-service
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/catalog}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{X-Correlation-Id:-}]"

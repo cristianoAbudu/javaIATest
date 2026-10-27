@@ -1,0 +1,48 @@
+server:
+  port: ${SERVER_PORT:8081}
+spring:
+  application:
+    name: orders-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/orders}
+    username: ${SPRING_DATASOURCE_USERNAME:orders}
+    password: ${SPRING_DATASOURCE_PASSWORD:orders}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+orders:
+  discount:
+    percent: ${ORDERS_DISCOUNT_PERCENT:5}
+catalog:
+  base-url: ${CATALOG_BASE_URL:http://localhost:8082}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+resilience4j:
+  retry:
+    instances:
+      catalogClient:
+        max-attempts: 2
+        wait-duration: 150ms
+        retry-exceptions:
+          - org.springframework.web.client.ResourceAccessException
+  circuitbreaker:
+    instances:
+      catalogClient:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{X-Correlation-Id:-}]"
